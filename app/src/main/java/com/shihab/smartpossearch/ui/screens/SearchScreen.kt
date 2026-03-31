@@ -33,7 +33,9 @@ import com.shihab.smartpossearch.viewmodel.SearchViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
 
         Text("Smart POS Search", fontSize = 24.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(16.dp))
@@ -50,7 +52,6 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // রেজাল্ট বা লোডিং স্টেট দেখানো
         if (viewModel.isLoading) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
@@ -60,7 +61,6 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
                 Text("No products found!", color = Color.Gray, fontSize = 16.sp)
             }
         } else {
-            // প্রোডাক্ট লিস্ট ভিউ
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(viewModel.searchResults) { product ->
                     Card(
@@ -81,13 +81,11 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
     }
 }
 
-// ==========================================
-// PREVIEW SECTION (ডিজাইন দেখার জন্য)
-// ==========================================
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SearchScreenPreview() {
     MaterialTheme {
-        SearchScreen(viewModel = SearchViewModel())
+        SearchScreen()
     }
 }
